@@ -1,17 +1,17 @@
 package com.example.eliceproject.view
 
 import android.os.Build
+import androidx.navigation.fragment.NavHostFragment
 import com.example.eliceproject.R
 import com.example.eliceproject.databinding.ActivityMainBinding
 import com.example.eliceproject.extention.setStatusBarColor
-import com.example.eliceproject.util.PrintLog
 
 class MainActivity :
     BaseActivity<ActivityMainBinding>(resId = R.layout.activity_main) {
 
     override fun onSetupUI() {
-        with (binding) {
-            PrintLog.d("test", "")
+        with(binding) {
+            lifecycleOwner = this@MainActivity
         }
     }
 
@@ -19,6 +19,16 @@ class MainActivity :
     }
 
     override fun onBackButtonPressed() {
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer) as? NavHostFragment
+                ?: return
+
+        // fragment stack 이 없을 경우 activity 종료
+        if (navHostFragment.childFragmentManager.backStackEntryCount == 0) {
+            finish()
+        } else { // fragment stack 이 있을 경우 가장 최근 fragment pop
+            navHostFragment.navController.popBackStack()
+        }
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

@@ -2,19 +2,21 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_nav_graph">
-<!--    app:startDestination="@id/feedFragment"-->
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
 
-<!--    <fragment-->
-<!--        android:id="@+id/emptyFragment"-->
-<!--        android:name="com.metacellar.metacellar.view.screen.test.EmptyFragment"-->
-<!--        android:label="emptyFragment" />-->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.eliceproject.view.fragment.home.HomeFragment"
+        android:label="homeFragment"
+        tools:layout="@layout/fragment_home" />
 
-<!--    &lt;!&ndash; region feed &ndash;&gt;-->
-<!--    <fragment-->
-<!--        android:id="@+id/feedFragment"-->
-<!--        android:name="com.metacellar.metacellar.view.screen.main.feed.FeedFragment"-->
-<!--        android:label="feedFragment" />-->
+    <!-- region feed -->
+    <fragment
+        android:id="@+id/courseDetailFragment"
+        android:name="com.example.eliceproject.view.fragment.course_detail.CourseDetailFragment"
+        android:label="courseDetailFragment"
+        tools:layout="@layout/fragment_course_detail" />
 
 </navigation>
 
