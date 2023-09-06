@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- region Text Style -->
+    <style name="Text.Base" parent="android:TextAppearance">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="Text.NotoNormal" parent="Text.Base">
+        <item name="android:fontFamily">@font/notosans_font</item>
+        <item name="fontFamily">@font/notosans_font</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Text.NotoBold" parent="Text.Base">
+        <item name="android:fontFamily">@font/notosans_font</item>
+        <item name="fontFamily">@font/notosans_font</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <!-- endregion -->
+
+</resources>
