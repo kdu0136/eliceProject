@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">EliceProject</string>
+
+    <!-- region home -->
+    <string name="course_title_free">무료 과목</string>
+    <string name="course_title_recommend">추천 과목</string>
+    <string name="course_title_my">내 학습</string>
+    <!-- endregion -->
 </resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:viewBind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="holder"
+            type="com.example.eliceproject.view.fragment.home.components.view_holder.CourseListViewHolder" />
+
+        <variable
+            name="data"
+            type="com.example.eliceproject.data.course.model.Course" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:minHeight="220dp"
+        viewBind:onSafeClick="@{() -> holder.onItemClick(data)}">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:cardBackgroundColor="@color/color_3A3A4C"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintDimensionRatio="2:1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/logo_course" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleText"
+            style="@style/Text.NotoBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="4sp"
+            android:maxLines="2"
+            android:text="title title title titletitle titletitletitle titletitletitletitle"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/imageLayout" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/descriptionText"
+            style="@style/Text.NotoNormal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="title title title titletitle titletitletitle title title titletitle titletitletitle title title titletitle titletitletitle titletitletitletitle"
+            android:textColor="@color/color_242424"
+            android:textSize="10sp"
+            app:layout_constraintTop_toBottomOf="@id/titleText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tagRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:scrollbars="none"
+            app:layout_constraintTop_toBottomOf="@id/descriptionText"
+            tools:itemCount="3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

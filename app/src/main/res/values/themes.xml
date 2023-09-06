@@ -5,5 +5,8 @@
 
         <item name="android:colorBackground">@color/white</item>
 
+        <!-- touch highlight color -->
+        <item name="colorControlHighlight">@color/color_E4E4E4</item>
+
     </style>
 </resources>
