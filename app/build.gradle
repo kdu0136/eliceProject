@@ -72,4 +72,12 @@ dependencies {
     // retrofit
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    // gson
+    def gson_version = "2.10.1"
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    // flexbox TODO: course tag list 에서 사용 예상
+    def flexbox_version = "3.0.0"
+    implementation "com.google.android.flexbox:flexbox:$flexbox_version"
 }
