@@ -3,30 +3,19 @@ package com.example.eliceproject.view.fragment.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.distinctUntilChanged
-import com.example.eliceproject.util.PrintLog
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import androidx.paging.liveData
+import com.example.eliceproject.data.course.CourseRepository
+import com.example.eliceproject.data.course.model.Course
+import com.example.eliceproject.data.course.model.CourseType
 import com.example.eliceproject.view.BaseViewModel
-import kotlinx.coroutines.delay
 
 class HomeViewModel(
+    courseRepository: CourseRepository,
 ) : BaseViewModel() {
-    private val _testLiveData: MutableLiveData<String> = MutableLiveData("hello")
-    val testLiveData: LiveData<String> = _testLiveData.distinctUntilChanged()
-
-    fun test() = launch(
-        childJob = {
-            PrintLog.d("func", "test")
-        },
-        endJob = {},
-        exception = {},
-    )
-
-    fun test2() = launch(
-        jobName = object {}.javaClass.enclosingMethod?.name ?: "",
-        childJob = {
-            PrintLog.d("func", "test2")
-            delay(1000)
-        },
-        endJob = {},
-        exception = {},
-    )
+    val testLiveData: LiveData<PagingData<Course>> =
+        courseRepository.getCourseList(type = CourseType.FREE)
+            .liveData.cachedIn(viewModelScope)
 }

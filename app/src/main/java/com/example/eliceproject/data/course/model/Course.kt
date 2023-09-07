@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class Course(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String,
-    @SerializedName("Image_file_url") val imageUrl: String?,
+    @SerializedName("image_file_url") val imageUrl: String?,
     @SerializedName("short_description") val description: String,
     @SerializedName("taglist") val tagList: List<String>,
 ) {

@@ -82,4 +82,12 @@ dependencies {
     // flexbox TODO: course tag list 에서 사용 예상
     def flexbox_version = "3.0.0"
     implementation "com.google.android.flexbox:flexbox:$flexbox_version"
+
+    // paging
+    def paging_version = "3.2.0"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // recycler view
+    def recyclerview_version = "1.3.1"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
 }
