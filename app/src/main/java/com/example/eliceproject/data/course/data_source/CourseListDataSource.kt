@@ -4,6 +4,7 @@ import com.example.eliceproject.data.BasePagingSource
 import com.example.eliceproject.data.PagingSourceData
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.course.model.CourseType
+import kotlin.random.Random
 
 class CourseListDataSource(
     private val type: CourseType,
@@ -16,8 +17,14 @@ class CourseListDataSource(
                 id = i,
                 title = "title $i",
                 imageUrl = null,
+                shortDescription = "shortDescription $i",
                 description = "description $i",
-                tagList = listOf("tag1", "tag2")
+                tagList = ArrayList<String>().apply {
+                    val max = Random.nextInt(4, 10)
+                    for (j in 0 until max) {
+                        add("tag$j")
+                    }
+                }
             )
             result.add(course)
         }

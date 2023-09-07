@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:viewBind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="holder"
+            type="com.example.eliceproject.view.fragment.home.components.view_holder.CourseTagListViewHolder" />
+
+        <variable
+            name="data"
+            type="String" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/color_E4E4E4"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:contentPaddingBottom="2dp"
+        app:contentPaddingLeft="4dp"
+        app:contentPaddingRight="4dp"
+        app:contentPaddingTop="2dp"
+        viewBind:onSafeClick="@{() -> holder.onItemClick(data)}">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Text.NotoBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data}"
+            android:textSize="8sp" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

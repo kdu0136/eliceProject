@@ -11,6 +11,7 @@ import com.example.eliceproject.extention.customGetParcelable
 import com.example.eliceproject.extention.navigate
 import com.example.eliceproject.util.CustomItemDecoration
 import com.example.eliceproject.util.Navigator
+import com.example.eliceproject.util.PrintLog
 import com.example.eliceproject.view.fragment.BaseFragment
 import com.example.eliceproject.view.fragment.home.components.adapter.CourseListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -27,7 +28,8 @@ class HomeFragment :
     // region adapter
     private val freeCourseAdapter: CourseListAdapter by lazy {
         CourseListAdapter(itemClick = { course ->
-            navigate(nav = Navigator.CourseDetail(courseId = course.id))
+            PrintLog.d("course", course.tagList?.size)
+//            navigate(nav = Navigator.CourseDetail(courseId = course.id))
         })
     }
     private val recommendCourseAdapter: CourseListAdapter by lazy {

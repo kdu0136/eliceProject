@@ -72,10 +72,11 @@
             android:layout_marginTop="8dp"
             android:nestedScrollingEnabled="false"
             android:orientation="horizontal"
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+            tools:listitem="@layout/holder_course_tag_list"
             android:overScrollMode="never"
             android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@id/descriptionText"
-            tools:itemCount="3" />
+            app:layout_constraintTop_toBottomOf="@id/descriptionText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

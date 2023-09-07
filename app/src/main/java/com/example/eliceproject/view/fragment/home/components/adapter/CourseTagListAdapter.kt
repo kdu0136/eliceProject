@@ -3,19 +3,20 @@ package com.example.eliceproject.view.fragment.home.components.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eliceproject.R
-import com.example.eliceproject.data.course.model.Course
+import com.example.eliceproject.util.DiffUtil
 import com.example.eliceproject.util.createDataBinding
-import com.example.eliceproject.view.fragment.home.components.view_holder.CourseListViewHolder
-import com.example.eliceproject.view.global_components.adapter.BasePagingAdapter
+import com.example.eliceproject.view.fragment.home.components.view_holder.CourseTagListViewHolder
+import com.example.eliceproject.view.global_components.adapter.BaseListAdapter
 
-// 과목 리스트 adapter
-class CourseListAdapter(
-    private val itemClick: (Course) -> Unit,
-) : BasePagingAdapter<Course, RecyclerView.ViewHolder>(Course.DiffCallback) {
+// 과목 태그 리스트 adapter
+class CourseTagListAdapter(
+    private val itemClick: (String) -> Unit,
+) :
+    BaseListAdapter<String, RecyclerView.ViewHolder>(DiffUtil.StringDiffCallback) {
     override fun createBodyViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        CourseListViewHolder(
+        CourseTagListViewHolder(
             binding = createDataBinding(
-                resId = R.layout.holder_course_list,
+                resId = R.layout.holder_course_tag_list,
                 context = parent.context,
                 parent = parent,
             ),
@@ -25,7 +26,7 @@ class CourseListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position) ?: return
         when (holder) {
-            is CourseListViewHolder -> holder.display(item)
+            is CourseTagListViewHolder -> holder.display(item)
         }
     }
 }
