@@ -5,9 +5,7 @@ import android.view.View
 import androidx.databinding.BindingAdapter
 
 
-/**
- * view 에 safe click 이벤트 등록
- */
+// view 에 safe click 이벤트 등록
 @BindingAdapter("viewBind:onSafeClick")
 fun View.setSafeOnClickListener(onClick: View.OnClickListener?) {
     setOnClickListener(SafeClickListener(onSafeClick = onClick))
