@@ -47,10 +47,10 @@ class CourseDetailFragment :
         with(viewModel) {
             courseDetailLiveData.observe {
                 binding.withImageTitleLayout.root.visibility =
-                    if (it.existImage) View.VISIBLE else View.GONE
+                    if (it.existBanner) View.VISIBLE else View.GONE
 
                 binding.withoutImageTitleLayout.root.visibility =
-                    if (it.existImage) View.GONE else View.VISIBLE
+                    if (it.existBanner) View.GONE else View.VISIBLE
             }
 
             lectureListLiveData.observe {

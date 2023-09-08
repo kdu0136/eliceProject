@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:imageViewBind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:viewBind="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="holder"
@@ -32,10 +35,21 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/logoImage"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center"
-                android:src="@drawable/logo_course" />
+                android:visibility="gone"
+                imageViewBind:centerCropDefaultImage="@{@drawable/logo_course}"
+                imageViewBind:centerCropImage="@{data.logoUrl}" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/bannerImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                imageViewBind:centerCropImage="@{data.bannerUrl}" />
 
         </androidx.cardview.widget.CardView>
 
@@ -48,8 +62,9 @@
             android:ellipsize="end"
             android:lineSpacingExtra="4sp"
             android:maxLines="2"
-            android:text="title title title titletitle titletitletitle titletitletitletitle"
+            android:text="@{data.title}"
             android:textSize="14sp"
+            android:visibility="@{data.title.empty ? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toBottomOf="@id/imageLayout" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -60,9 +75,10 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="title title title titletitle titletitletitle title title titletitle titletitletitle title title titletitle titletitletitle titletitletitletitle"
+            android:text="@{data.shortDescription}"
             android:textColor="@color/color_242424"
             android:textSize="10sp"
+            android:visibility="@{data.shortDescription.empty ? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toBottomOf="@id/titleText" />
 
         <androidx.recyclerview.widget.RecyclerView

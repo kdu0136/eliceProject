@@ -1,5 +1,6 @@
 package com.example.eliceproject.view.fragment.home.components.view_holder
 
+import android.view.View
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.databinding.HolderCourseListBinding
@@ -23,6 +24,15 @@ class CourseListViewHolder(
             holder = this@CourseListViewHolder
             data = item
             executePendingBindings()
+        }
+
+        // banner image 유무에 따른 view visible 설정
+        if (item.bannerUrl == null || item.bannerUrl.isEmpty()) {
+            binding.logoImage.visibility = View.VISIBLE
+            binding.bannerImage.visibility = View.GONE
+        } else {
+            binding.logoImage.visibility = View.GONE
+            binding.bannerImage.visibility = View.VISIBLE
         }
 
         // TODO: tag list 의 max line 이 2 인지? tag list item 의 text max line 이 2 인지?
