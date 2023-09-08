@@ -1,8 +1,10 @@
 package com.example.eliceproject.view.fragment.home
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.eliceproject.R
@@ -12,8 +14,13 @@ import com.example.eliceproject.extention.customGetParcelable
 import com.example.eliceproject.extention.navigate
 import com.example.eliceproject.util.CustomItemDecoration
 import com.example.eliceproject.util.Navigator
+import com.example.eliceproject.util.PrintLog
 import com.example.eliceproject.view.fragment.BaseFragment
+import com.example.eliceproject.view.fragment.event.CourseRegisterUpdateEvent
 import com.example.eliceproject.view.fragment.home.components.adapter.CourseListAdapter
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.qualifier.named
 
@@ -33,7 +40,16 @@ class HomeFragment :
         CourseListAdapter(itemClick = this::runCourseDetail)
     }
     private val myCourseAdapter: CourseListAdapter by lazy {
-        CourseListAdapter(itemClick = this::runCourseDetail)
+        CourseListAdapter(itemClick = this::runCourseDetail).apply {
+            registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    // 과목 수강 신청시 scroll 처음으로
+                    if (positionStart == 0 && itemCount == 1) {
+                        binding.courseMyLayout.recyclerView.smoothScrollToPosition(0)
+                    }
+                }
+            })
+        }
     }
     // endregion
 
@@ -42,10 +58,6 @@ class HomeFragment :
             lifecycleOwner = this@HomeFragment.viewLifecycleOwner
             view = this@HomeFragment
         }
-        with(binding.courseFreeLayout) {
-            lifecycleOwner = this@HomeFragment.viewLifecycleOwner
-        }
-
         viewModel.lifecycleOwner = this@HomeFragment.viewLifecycleOwner
 
         with(binding.courseFreeLayout.recyclerView) {
@@ -140,6 +152,22 @@ class HomeFragment :
                 binding.scrollView.scrollTo(0, positionY)
             }
         }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    fun updateCourseRegister(event: CourseRegisterUpdateEvent) {
+        PrintLog.d("updateCourseRegister Event", event, fragmentTag)
+        myCourseAdapter.refresh()
     }
 
     private fun restoreRecyclerViewState(

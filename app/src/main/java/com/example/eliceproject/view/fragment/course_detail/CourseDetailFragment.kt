@@ -5,14 +5,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.eliceproject.R
 import com.example.eliceproject.databinding.FragmentCourseDetailBinding
 import com.example.eliceproject.extention.getBundleData
 import com.example.eliceproject.util.Navigator
+import com.example.eliceproject.util.PrintLog
 import com.example.eliceproject.view.fragment.BaseFragment
 import com.example.eliceproject.view.fragment.course_detail.components.adapter.LectureListAdapter
+import com.example.eliceproject.view.fragment.event.CourseRegisterUpdateEvent
 import com.mukesh.MarkDown
+import org.greenrobot.eventbus.EventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
@@ -78,5 +82,13 @@ class CourseDetailFragment :
                 this@CourseDetailFragment.lectureAdapter.submitData(lifecycle, it)
             }
         }
+    }
+
+    override fun onDestroy() {
+        // 과목 수강 상태 변경한적 있으면 event 발송
+        if (viewModel.isUpdateRegister) {
+            EventBus.getDefault().post(CourseRegisterUpdateEvent)
+        }
+        super.onDestroy()
     }
 }

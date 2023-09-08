@@ -18,6 +18,8 @@ class CourseDetailViewModel(
 ) : BaseViewModel() {
 
     // region 수강신청 유무
+    var isUpdateRegister: Boolean = false // 수강신청 변경 여부
+
     private var isRegisterCourse: Boolean = false
         set(value) {
             field = value
@@ -39,6 +41,7 @@ class CourseDetailViewModel(
         jobName = object {}.javaClass.enclosingMethod?.name ?: "",
         childJob = {
             isRegisterCourse = courseRepository.updateMyCourse(courseId = courseId)
+            isUpdateRegister = true
         },
     )
     // endregion
