@@ -37,7 +37,7 @@ class CourseDetailViewModel(
             val data = courseRepository.getCourseDetail(courseId = courseId)
             emit(data)
         } catch (e: Exception) {
-
+            PrintLog.e("fail getCourseDetail", e)
         }
     }
     // endregion
