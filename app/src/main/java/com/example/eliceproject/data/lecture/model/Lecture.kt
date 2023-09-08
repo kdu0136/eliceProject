@@ -9,7 +9,7 @@ data class Lecture(
     @SerializedName("title") val title: String?,
     @SerializedName("description") val description: String?,
 ) {
-    var type: ViewHolderType = ViewHolderType.BODY
+    var type: ViewHolderType? = null
     var isFirst: Boolean = false
     var isLast: Boolean = false
 

@@ -5,6 +5,7 @@ import com.example.eliceproject.data.PagingSourceData
 import com.example.eliceproject.data.lecture.model.Lecture
 import com.example.eliceproject.data.remote.ResultWrapper
 import com.example.eliceproject.remote.service.ApiLectureService
+import com.example.eliceproject.view.global_components.view_holder.ViewHolderType
 
 class LectureListDataSource(
     private val apiLectureService: ApiLectureService,
@@ -18,15 +19,20 @@ class LectureListDataSource(
             count = count,
         ).let {
             when (it) {
-                is ResultWrapper.Success -> it.result.lectureList
+                is ResultWrapper.Success -> it.result.lectureList.also { lectureList ->
+                    // first data 변수 할당
+                    if (page == 1 && lectureList.isNotEmpty()) {
+                        lectureList.first().isFirst = true
+                    }
+                    // data type body 할당
+                    lectureList.map { lecture ->
+                        lecture.type = ViewHolderType.BODY
+                    }
+                }
                 is ResultWrapper.Error -> throw it.error
             }
         }
 
-        // first data 변수 할당
-        if (page == 1 && data.isNotEmpty()) {
-            data.first().isFirst = true
-        }
 
         return PagingSourceData(
             data = data,

@@ -1,10 +1,7 @@
 package com.example.eliceproject.view.fragment.course_detail
 
 import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
-import androidx.paging.insertHeaderItem
-import androidx.paging.liveData
+import androidx.paging.*
 import com.example.eliceproject.data.course.CourseRepository
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.lecture.LectureRepository

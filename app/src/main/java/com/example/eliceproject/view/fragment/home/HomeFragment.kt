@@ -28,9 +28,7 @@ class HomeFragment :
 
     // region adapter
     private val freeCourseAdapter: CourseListAdapter by lazy {
-        CourseListAdapter(itemClick = {
-            PrintLog.d("course", it)
-        })
+        CourseListAdapter(itemClick = this::runCourseDetail)
     }
     private val recommendCourseAdapter: CourseListAdapter by lazy {
         CourseListAdapter(itemClick = this::runCourseDetail)

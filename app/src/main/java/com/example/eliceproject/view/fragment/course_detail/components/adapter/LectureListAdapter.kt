@@ -16,7 +16,7 @@ class LectureListAdapter :
 
     override fun getItemViewType(position: Int): Int {
         val data = getItem(position) ?: return ViewHolderType.HEADER.value
-        return data.type.value
+        return data.type?.value ?: ViewHolderType.HEADER.value
     }
 
     override fun createBodyViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
