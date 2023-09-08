@@ -1,5 +1,7 @@
 package com.example.eliceproject.di
 
+import androidx.room.Room
+import com.example.eliceproject.data.EliceDataBase
 import com.example.eliceproject.data.course.CourseRepository
 import com.example.eliceproject.data.course.CourseRepositoryImpl
 import com.example.eliceproject.data.lecture.LectureRepository
@@ -17,6 +19,19 @@ import com.example.eliceproject.view.fragment.home.HomeViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+
+val roomModules = module {
+    single(qualifier = named("eliceDataBase")) {
+        Room.databaseBuilder(
+            get(),
+            EliceDataBase::class.java,
+            "elice"
+        ).build()
+    }
+    single(qualifier = named("myCourseDao")) {
+        get<EliceDataBase>(qualifier = named("eliceDataBase")).myCourseDao()
+    }
+}
 
 val remoteModules = module {
     single(qualifier = named("httpClient")) {
@@ -55,7 +70,8 @@ val remoteModules = module {
 val repositoryModules = module {
     single<CourseRepository>(qualifier = named("courseRepository")) {
         CourseRepositoryImpl(
-            apiCourseService = get(qualifier = named("apiCourseService"))
+            apiCourseService = get(qualifier = named("apiCourseService")),
+            myCourseDao = get(qualifier = named("myCourseDao")),
         )
     }
 

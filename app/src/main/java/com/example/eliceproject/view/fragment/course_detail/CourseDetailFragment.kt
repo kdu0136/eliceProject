@@ -46,6 +46,8 @@ class CourseDetailFragment :
             adapter = this@CourseDetailFragment.lectureAdapter
             (itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
         }
+
+        viewModel.loadRegisteredCourse()
     }
 
     override fun observeViewModel() {

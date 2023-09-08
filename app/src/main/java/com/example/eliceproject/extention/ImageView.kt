@@ -7,8 +7,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.request.RequestOptions
-import com.example.eliceproject.R
-import com.example.eliceproject.util.PrintLog
 
 @BindingAdapter(
     value = [
@@ -21,7 +19,6 @@ fun <T> ImageView.setCenterCropImage(
     image: T?,
     defaultImage: Any?,
 ) {
-    PrintLog.d("defaultImage", defaultImage)
     setGlideImage(
         image = image,
         defaultImage = defaultImage,

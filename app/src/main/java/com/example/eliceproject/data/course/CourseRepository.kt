@@ -15,4 +15,11 @@ interface CourseRepository {
     suspend fun getCourseDetail(
         courseId: Int,
     ): Course
+
+    // 내 학습에 추가 여부 불러오기
+    suspend fun getIsExistCourse(courseId: Int): Boolean
+
+    // 내 학습 유무 변경 (이미 추가되어있는 course 면 삭제 & 없으면 추가)
+    // return => true - 추가 / false - 삭제
+    suspend fun updateMyCourse(courseId: Int): Boolean
 }
