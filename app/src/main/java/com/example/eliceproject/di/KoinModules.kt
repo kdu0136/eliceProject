@@ -26,7 +26,7 @@ val roomModules = module {
             get(),
             EliceDataBase::class.java,
             "elice"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
     single(qualifier = named("myCourseDao")) {
         get<EliceDataBase>(qualifier = named("eliceDataBase")).myCourseDao()

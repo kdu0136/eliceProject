@@ -24,4 +24,10 @@ class HomeViewModel(
         courseRepository.getCourseList(type = CourseType.RECOMMEND)
             .liveData.cachedIn(viewModelScope)
     // endregion
+
+    // region my course
+    val myCourseListLiveData: LiveData<PagingData<Course>> =
+        courseRepository.getMyCourseList()
+            .liveData.cachedIn(viewModelScope)
+    // endregion
 }

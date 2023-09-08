@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.example.eliceproject.data.course.dao.MyCourseDao
 import com.example.eliceproject.data.course.data_source.CourseListDataSource
+import com.example.eliceproject.data.course.data_source.MyCourseListDataSource
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.course.model.CourseType
 import com.example.eliceproject.data.course.model.MyCourse
@@ -51,8 +52,26 @@ class CourseRepositoryImpl(
             myCourseDao.deleteMyCourse(courseId = courseId)
             false
         } else {// 없는 course - 추가
-            myCourseDao.insertMyCourse(course = MyCourse(id = courseId))
+            myCourseDao.insertMyCourse(
+                course = MyCourse(
+                    id = courseId,
+                    registerDate = System.currentTimeMillis(),
+                )
+            )
             true
         }
     }
+
+    override fun getMyCourseList(pageSize: Int): Pager<Int, Course> =
+        Pager(
+            PagingConfig(
+                initialLoadSize = pageSize,
+                pageSize = pageSize,
+            )
+        ) {
+            MyCourseListDataSource(
+                apiCourseService = apiCourseService,
+                myCourseDao = myCourseDao,
+            )
+        }
 }

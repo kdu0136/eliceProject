@@ -10,6 +10,7 @@ interface CourseRequest {
     suspend fun getCourseList(
         @Query(value = "filter_is_free") freeFilter: Boolean?,
         @Query(value = "filter_is_recommended") recommendFilter: Boolean?,
+        @Query(value = "filter_conditions") courseIdListJsonStr: String?,
         @Query(value = "offset") offset: Int,
         @Query(value = "count") count: Int,
     ): ResCourseList

@@ -12,7 +12,6 @@ import com.example.eliceproject.extention.customGetParcelable
 import com.example.eliceproject.extention.navigate
 import com.example.eliceproject.util.CustomItemDecoration
 import com.example.eliceproject.util.Navigator
-import com.example.eliceproject.util.PrintLog
 import com.example.eliceproject.view.fragment.BaseFragment
 import com.example.eliceproject.view.fragment.home.components.adapter.CourseListAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -74,6 +73,10 @@ class HomeFragment :
 
             recommendCourseListLiveData.observe {
                 this@HomeFragment.recommendCourseAdapter.submitData(lifecycle, it)
+            }
+
+            myCourseListLiveData.observe {
+                this@HomeFragment.myCourseAdapter.submitData(lifecycle, it)
             }
         }
     }
