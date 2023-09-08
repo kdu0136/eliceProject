@@ -32,8 +32,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center"
                 android:src="@drawable/logo_course" />
 
@@ -72,11 +72,11 @@
             android:layout_marginTop="8dp"
             android:nestedScrollingEnabled="false"
             android:orientation="horizontal"
-            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
-            tools:listitem="@layout/holder_course_tag_list"
             android:overScrollMode="never"
             android:scrollbars="none"
-            app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+            app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/descriptionText"
+            tools:listitem="@layout/holder_course_tag_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

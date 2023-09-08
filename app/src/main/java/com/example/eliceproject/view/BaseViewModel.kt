@@ -34,8 +34,8 @@ abstract class BaseViewModel : ViewModel() {
     fun launch(
         jobName: String,
         childJob: suspend CoroutineScope.() -> Unit,
-        endJob: suspend CoroutineScope.() -> Unit,
-        exception: (Exception) -> Unit,
+        endJob: suspend CoroutineScope.() -> Unit = {},
+        exception: (Exception) -> Unit = {},
     ) {
         if (jobMap[jobName] == null) {
             addJob(jobName = jobName, jobMap = jobMap)
@@ -59,8 +59,8 @@ abstract class BaseViewModel : ViewModel() {
     // 중복 작업해도 문제 없을 경우 호출
     fun launch(
         childJob: suspend CoroutineScope.() -> Unit,
-        endJob: suspend CoroutineScope.() -> Unit,
-        exception: (Exception) -> Unit,
+        endJob: suspend CoroutineScope.() -> Unit = {},
+        exception: (Exception) -> Unit = {},
     ) {
         scope.launch {
             try {

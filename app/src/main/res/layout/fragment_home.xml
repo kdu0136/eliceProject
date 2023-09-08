@@ -24,7 +24,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:background="?attr/selectableItemBackground"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,26 +53,26 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <include
                     android:id="@+id/courseFreeLayout"
-                    app:layout_constraintTop_toTopOf="parent"
                     layout="@layout/home_course_list_layout"
-                    android:title="@{@string/course_title_free}" />
+                    app:title="@{@string/course_title_free}"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <include
                     android:id="@+id/courseRecommendLayout"
                     layout="@layout/home_course_list_layout"
-                    app:layout_constraintTop_toBottomOf="@id/courseFreeLayout"
-                    android:title="@{@string/course_title_recommend}" />
+                    app:title="@{@string/course_title_recommend}"
+                    app:layout_constraintTop_toBottomOf="@id/courseFreeLayout" />
 
                 <include
                     android:id="@+id/courseMyLayout"
                     layout="@layout/home_course_list_layout"
-                    app:layout_constraintTop_toBottomOf="@id/courseRecommendLayout"
-                    android:title="@{@string/course_title_my}" />
+                    app:title="@{@string/course_title_my}"
+                    app:layout_constraintTop_toBottomOf="@id/courseRecommendLayout" />
 
             </LinearLayout>
 

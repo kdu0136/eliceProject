@@ -19,4 +19,17 @@
     </style>
     <!-- endregion -->
 
+    <!-- region Button Style -->
+    <style name="Button.SelectBottom" parent="Text.NotoBold">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:background">@drawable/rect_radius_10</item>
+    </style>
+    <!-- endregion -->
+
 </resources>

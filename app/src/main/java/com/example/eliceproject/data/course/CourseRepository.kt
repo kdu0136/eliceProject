@@ -10,4 +10,9 @@ interface CourseRepository {
         type: CourseType,
         pageSize: Int = 10,
     ): Pager<Int, Course>
+
+    // 과목 리스트 불러오기
+    suspend fun getCourseDetail(
+        courseId: Int,
+    ): Course
 }

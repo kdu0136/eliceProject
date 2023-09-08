@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.eliceproject.R
+import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.databinding.FragmentHomeBinding
 import com.example.eliceproject.extention.customGetParcelable
 import com.example.eliceproject.extention.navigate
@@ -27,20 +28,13 @@ class HomeFragment :
 
     // region adapter
     private val freeCourseAdapter: CourseListAdapter by lazy {
-        CourseListAdapter(itemClick = { course ->
-            PrintLog.d("course", course.tagList?.size)
-//            navigate(nav = Navigator.CourseDetail(courseId = course.id))
-        })
+        CourseListAdapter(itemClick = this::runCourseDetail)
     }
     private val recommendCourseAdapter: CourseListAdapter by lazy {
-        CourseListAdapter(itemClick = { course ->
-            navigate(nav = Navigator.CourseDetail(courseId = course.id))
-        })
+        CourseListAdapter(itemClick = this::runCourseDetail)
     }
     private val myCourseAdapter: CourseListAdapter by lazy {
-        CourseListAdapter(itemClick = { course ->
-            navigate(nav = Navigator.CourseDetail(courseId = course.id))
-        })
+        CourseListAdapter(itemClick = this::runCourseDetail)
     }
     // endregion
 
@@ -155,5 +149,9 @@ class HomeFragment :
                 recyclerView.layoutManager?.onRestoreInstanceState(this)
             }
         }
+    }
+
+    private fun runCourseDetail(course: Course) {
+        navigate(nav = Navigator.CourseDetail(courseId = course.id))
     }
 }

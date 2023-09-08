@@ -6,11 +6,15 @@ import com.google.gson.annotations.SerializedName
 data class Course(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String?,
+    @SerializedName("logo_file_url") val logoUrl: String?,
     @SerializedName("image_file_url") val imageUrl: String?,
     @SerializedName("short_description") val shortDescription: String?,
     @SerializedName("description") val description: String?,
     @SerializedName("taglist") val tagList: List<String>?,
 ) {
+    val existImage: Boolean
+        get() = imageUrl?.isNotEmpty() ?: false
+
     companion object {
         val DiffCallback = object : DiffUtil.ItemCallback<Course>() {
             override fun areItemsTheSame(

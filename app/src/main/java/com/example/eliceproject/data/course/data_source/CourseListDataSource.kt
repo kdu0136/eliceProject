@@ -4,6 +4,7 @@ import com.example.eliceproject.data.BasePagingSource
 import com.example.eliceproject.data.PagingSourceData
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.course.model.CourseType
+import com.example.eliceproject.util.PrintLog
 import kotlin.random.Random
 
 class CourseListDataSource(
@@ -28,6 +29,7 @@ class CourseListDataSource(
             )
             result.add(course)
         }
+        PrintLog.d("getNewData", "page: $page, count: $count")
 
         return PagingSourceData(
             data = result,
