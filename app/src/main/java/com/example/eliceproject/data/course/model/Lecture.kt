@@ -1,6 +1,7 @@
 package com.example.eliceproject.data.course.model
 
 import androidx.recyclerview.widget.DiffUtil
+import com.example.eliceproject.view.global_components.view_holder.ViewHolderType
 import com.google.gson.annotations.SerializedName
 
 data class Lecture(
@@ -8,6 +9,10 @@ data class Lecture(
     @SerializedName("title") val title: String?,
     @SerializedName("description") val description: String?,
 ) {
+    var type: ViewHolderType = ViewHolderType.BODY
+    var isFirst: Boolean = false
+    var isLast: Boolean = false
+
     companion object {
         val DiffCallback = object : DiffUtil.ItemCallback<Lecture>() {
             override fun areItemsTheSame(
@@ -22,5 +27,11 @@ data class Lecture(
             ): Boolean =
                 oldItem == newItem
         }
+
+        fun emptyData(): Lecture = Lecture(
+            id = -1,
+            title = null,
+            description = null,
+        )
     }
 }

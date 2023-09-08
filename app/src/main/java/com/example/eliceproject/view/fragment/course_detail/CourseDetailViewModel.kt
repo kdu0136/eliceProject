@@ -7,9 +7,9 @@ import androidx.paging.insertHeaderItem
 import androidx.paging.liveData
 import com.example.eliceproject.data.course.CourseRepository
 import com.example.eliceproject.data.course.model.Course
-import com.example.eliceproject.data.course.model.CourseType
+import com.example.eliceproject.data.course.model.Lecture
 import com.example.eliceproject.view.BaseViewModel
-import kotlinx.coroutines.delay
+import com.example.eliceproject.view.global_components.view_holder.ViewHolderType
 
 class CourseDetailViewModel(
     courseRepository: CourseRepository,
@@ -41,7 +41,13 @@ class CourseDetailViewModel(
     }
     // endregion
 
-    val testLiveData: LiveData<PagingData<Course>> =
-        courseRepository.getCourseList(type = CourseType.FREE)
-            .liveData.cachedIn(viewModelScope)
+    // region 수업 list
+    val lectureListLiveData: LiveData<PagingData<Lecture>> =
+        courseRepository.getLectureList()
+            .liveData.cachedIn(viewModelScope).map {
+                it.insertHeaderItem(item = Lecture.emptyData().apply {
+                    type = ViewHolderType.HEADER
+                })
+            }
+    // endregion
 }

@@ -18,6 +18,7 @@ class CourseListDataSource(
                 id = i,
                 title = "title $i",
                 imageUrl = null,
+                logoUrl = "",
                 shortDescription = "shortDescription $i",
                 description = "description $i",
                 tagList = ArrayList<String>().apply {
@@ -29,7 +30,6 @@ class CourseListDataSource(
             )
             result.add(course)
         }
-        PrintLog.d("getNewData", "page: $page, count: $count")
 
         return PagingSourceData(
             data = result,

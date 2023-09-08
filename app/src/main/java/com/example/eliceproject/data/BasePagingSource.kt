@@ -26,6 +26,7 @@ abstract class BasePagingSource<Value : Any>(
                 PrintLog.d("params.key null", "initPage: $initPage", tag)
                 initPage
             }
+            PrintLog.d("load", "page: $page, count: ${params.loadSize}", tag)
             val data: PagingSourceData<Value> = getNewData(page = page, count = params.loadSize)
 
             LoadResult.Page(

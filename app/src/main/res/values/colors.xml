@@ -4,8 +4,10 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="color_E4E4E4">#E4E4E4</color>
+    <color name="color_AEAEAE">#AEAEAE</color>
     <color name="color_3A3A4C">#3A3A4C</color>
     <color name="color_242424">#242424</color>
     <color name="color_5A2ECC">#5A2ECC</color>
+    <color name="color_524FA1">#524FA1</color>
     <color name="color_F44336">#F44336</color>
 </resources>

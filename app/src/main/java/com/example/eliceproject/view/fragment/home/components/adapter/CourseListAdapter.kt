@@ -22,6 +22,9 @@ class CourseListAdapter(
             itemClick = itemClick,
         )
 
+    override fun createHeaderViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        createBodyViewHolder(parent, viewType)
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position) ?: return
         when (holder) {
