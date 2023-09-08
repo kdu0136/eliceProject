@@ -13,7 +13,15 @@ import com.example.eliceproject.view.BaseViewModel
 class HomeViewModel(
     courseRepository: CourseRepository,
 ) : BaseViewModel() {
-    val testLiveData: LiveData<PagingData<Course>> =
+    // region free course
+    val freeCourseListLiveData: LiveData<PagingData<Course>> =
         courseRepository.getCourseList(type = CourseType.FREE)
             .liveData.cachedIn(viewModelScope)
+    // endregion
+
+    // region recommend course
+    val recommendCourseListLiveData: LiveData<PagingData<Course>> =
+        courseRepository.getCourseList(type = CourseType.RECOMMEND)
+            .liveData.cachedIn(viewModelScope)
+    // endregion
 }

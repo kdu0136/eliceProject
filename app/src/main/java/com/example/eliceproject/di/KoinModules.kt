@@ -54,11 +54,15 @@ val remoteModules = module {
 
 val repositoryModules = module {
     single<CourseRepository>(qualifier = named("courseRepository")) {
-        CourseRepositoryImpl()
+        CourseRepositoryImpl(
+            apiCourseService = get(qualifier = named("apiCourseService"))
+        )
     }
 
     single<LectureRepository>(qualifier = named("lectureRepository")) {
-        LectureRepositoryImpl()
+        LectureRepositoryImpl(
+            apiLectureService = get(qualifier = named("apiLectureService"))
+        )
     }
 }
 
@@ -69,7 +73,7 @@ val viewModelModules = module {
         )
     }
 
-    viewModel(qualifier = named("courseDetailViewModel")) {(courseId: Int) ->
+    viewModel(qualifier = named("courseDetailViewModel")) { (courseId: Int) ->
         CourseDetailViewModel(
             courseRepository = get(qualifier = named("courseRepository")),
             lectureRepository = get(qualifier = named("lectureRepository")),

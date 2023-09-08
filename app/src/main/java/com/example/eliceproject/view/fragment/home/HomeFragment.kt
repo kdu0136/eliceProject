@@ -28,7 +28,9 @@ class HomeFragment :
 
     // region adapter
     private val freeCourseAdapter: CourseListAdapter by lazy {
-        CourseListAdapter(itemClick = this::runCourseDetail)
+        CourseListAdapter(itemClick = {
+            PrintLog.d("course", it)
+        })
     }
     private val recommendCourseAdapter: CourseListAdapter by lazy {
         CourseListAdapter(itemClick = this::runCourseDetail)
@@ -68,10 +70,12 @@ class HomeFragment :
 
     override fun observeViewModel() {
         with(viewModel) {
-            testLiveData.observe {
+            freeCourseListLiveData.observe {
                 this@HomeFragment.freeCourseAdapter.submitData(lifecycle, it)
+            }
+
+            recommendCourseListLiveData.observe {
                 this@HomeFragment.recommendCourseAdapter.submitData(lifecycle, it)
-                this@HomeFragment.myCourseAdapter.submitData(lifecycle, it)
             }
         }
     }

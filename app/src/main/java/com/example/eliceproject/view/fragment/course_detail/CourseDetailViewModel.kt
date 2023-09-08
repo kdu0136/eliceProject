@@ -45,7 +45,7 @@ class CourseDetailViewModel(
 
     // region 수업 list
     val lectureListLiveData: LiveData<PagingData<Lecture>> =
-        lectureRepository.getLectureList()
+        lectureRepository.getLectureList(courseId = courseId)
             .liveData.cachedIn(viewModelScope).map {
                 it.insertHeaderItem(item = Lecture.emptyData().apply {
                     type = ViewHolderType.HEADER

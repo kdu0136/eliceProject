@@ -5,9 +5,11 @@ import androidx.paging.PagingConfig
 import com.example.eliceproject.data.course.data_source.CourseListDataSource
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.course.model.CourseType
+import com.example.eliceproject.remote.service.ApiCourseService
 import kotlin.random.Random
 
 class CourseRepositoryImpl(
+    private val apiCourseService: ApiCourseService,
 ) : CourseRepository {
     override fun getCourseList(
         type: CourseType,
@@ -20,6 +22,7 @@ class CourseRepositoryImpl(
             )
         ) {
             CourseListDataSource(
+                apiCourseService = apiCourseService,
                 type = type,
             )
         }
