@@ -1,11 +1,13 @@
 package com.example.eliceproject.view.fragment.course_detail
 
 import androidx.lifecycle.*
+import androidx.lifecycle.map
 import androidx.paging.*
 import com.example.eliceproject.data.course.CourseRepository
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.lecture.LectureRepository
 import com.example.eliceproject.data.lecture.model.Lecture
+import com.example.eliceproject.util.PrintLog
 import com.example.eliceproject.view.BaseViewModel
 import com.example.eliceproject.view.global_components.view_holder.ViewHolderType
 
@@ -43,10 +45,6 @@ class CourseDetailViewModel(
     // region 수업 list
     val lectureListLiveData: LiveData<PagingData<Lecture>> =
         lectureRepository.getLectureList(courseId = courseId)
-            .liveData.cachedIn(viewModelScope).map {
-                it.insertHeaderItem(item = Lecture.emptyData().apply {
-                    type = ViewHolderType.HEADER
-                })
-            }
+            .liveData.cachedIn(viewModelScope)
     // endregion
 }

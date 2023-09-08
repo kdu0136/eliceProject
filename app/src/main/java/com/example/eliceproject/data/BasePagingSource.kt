@@ -35,7 +35,7 @@ abstract class BasePagingSource<Value : Any>(
                 nextKey = data.nextPage,
             )
         } catch (e: Exception) {
-            PrintLog.d("Exception", e, tag)
+            PrintLog.e("Exception", e, tag)
             LoadResult.Error(e)
         }
 

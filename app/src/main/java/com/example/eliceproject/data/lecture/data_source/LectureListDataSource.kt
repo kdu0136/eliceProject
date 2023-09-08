@@ -20,14 +20,17 @@ class LectureListDataSource(
         ).let {
             when (it) {
                 is ResultWrapper.Success -> it.result.lectureList.also { lectureList ->
-                    // first data 변수 할당
+                    // first data 변수 할당 & header 정의
                     if (page == 1 && lectureList.isNotEmpty()) {
                         lectureList.first().isFirst = true
+                        lectureList.add(0, Lecture.emptyData().apply {
+                            type = ViewHolderType.HEADER
+                        })
                     }
                     // data type body 할당
-                    lectureList.map { lecture ->
-                        lecture.type = ViewHolderType.BODY
-                    }
+                    lectureList
+                        .filter { lecture -> lecture.type != ViewHolderType.HEADER }
+                        .map { lecture -> lecture.type = ViewHolderType.BODY }
                 }
                 is ResultWrapper.Error -> throw it.error
             }
