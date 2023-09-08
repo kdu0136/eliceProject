@@ -9,6 +9,7 @@ import com.example.eliceproject.remote.interfaces.CourseRequest
 import com.example.eliceproject.util.PrintLog
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 interface ApiCourseService {

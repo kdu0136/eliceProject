@@ -5,9 +5,8 @@
     <data>
 
         <variable
-            name="course"
-            type="com.example.eliceproject.data.course.model.Course" />
-
+            name="data"
+            type="com.example.eliceproject.data.course.model.CourseDetailHeader.TitleWithoutBanner" />
     </data>
 
     <LinearLayout
@@ -15,13 +14,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp">
+        android:paddingTop="8dp"
+        android:paddingBottom="24dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="56dp"
             android:layout_height="56dp"
             imageViewBind:centerCropDefaultImage="@{@drawable/logo_course}"
-            imageViewBind:centerCropImage="@{course.logoUrl}" />
+            imageViewBind:centerCropImage="@{data.logoUrl}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/Text.NotoBold"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:lineSpacingExtra="-5sp"
-            android:text="@{course.title}"
+            android:text="@{data.title}"
             android:textSize="28sp" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -38,8 +38,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:lineSpacingExtra="-5sp"
-            android:text="@{course.shortDescription}"
+            android:text="@{data.shortDescription}"
             android:textSize="12sp" />
 
     </LinearLayout>
+
 </layout>

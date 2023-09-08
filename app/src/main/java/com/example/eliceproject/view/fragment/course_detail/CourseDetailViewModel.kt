@@ -6,6 +6,7 @@ import androidx.paging.cachedIn
 import androidx.paging.liveData
 import com.example.eliceproject.data.course.CourseRepository
 import com.example.eliceproject.data.course.model.Course
+import com.example.eliceproject.data.course.model.CourseDetailHeader
 import com.example.eliceproject.data.lecture.LectureRepository
 import com.example.eliceproject.data.lecture.model.Lecture
 import com.example.eliceproject.util.PrintLog
@@ -54,6 +55,44 @@ class CourseDetailViewModel(
         } catch (e: Exception) {
             PrintLog.e("fail getCourseDetail", e)
         }
+    }
+
+    // course detail 정보로 header adapter data 변경
+    val courseDetailHeaderLiveData: LiveData<List<CourseDetailHeader>> =
+        courseDetailLiveData.map {
+            parseToCourseHeaderData(course = it)
+        }
+    private fun parseToCourseHeaderData(course: Course): List<CourseDetailHeader> {
+        val headerDataList: ArrayList<CourseDetailHeader> = ArrayList()
+
+        val existBanner = course.bannerUrl?.isNotEmpty() ?: false
+        val titleData =
+            if (existBanner) {
+                CourseDetailHeader.TitleWithBanner(
+                    title = course.title ?: "",
+                    logoUrl = course.logoUrl ?: "",
+                    bannerUrl = course.bannerUrl ?: "",
+                )
+            } else {
+                CourseDetailHeader.TitleWithoutBanner(
+                    title = course.title ?: "",
+                    logoUrl = course.logoUrl ?: "",
+                    bannerUrl = course.bannerUrl ?: "",
+                    shortDescription = course.shortDescription ?: "",
+                )
+            }
+        headerDataList.add(titleData)
+
+        // 과목 소개가 있을 경우만 추가
+        if (course.description != null && course.description.isNotEmpty()) {
+            headerDataList.add(
+                CourseDetailHeader.Description(
+                    description = course.description ?: "",
+                )
+            )
+        }
+
+        return headerDataList
     }
     // endregion
 

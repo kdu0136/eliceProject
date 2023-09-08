@@ -6,15 +6,15 @@
     <data>
 
         <variable
-            name="course"
-            type="com.example.eliceproject.data.course.model.Course" />
-
+            name="data"
+            type="com.example.eliceproject.data.course.model.CourseDetailHeader.TitleWithBanner" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp">
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/logoImage"
@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             imageViewBind:centerCropDefaultImage="@{@drawable/logo_course}"
-            imageViewBind:centerCropImage="@{course.logoUrl}" />
+            imageViewBind:centerCropImage="@{data.logoUrl}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/titleText"
@@ -35,7 +35,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginEnd="16dp"
             android:lineSpacingExtra="1sp"
-            android:text="@{course.title}"
+            android:text="@{data.title}"
             android:textSize="16sp"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,8 @@
             android:layout_marginTop="14dp"
             app:layout_constraintDimensionRatio="2:1"
             app:layout_constraintTop_toBottomOf="@id/titleText"
-            imageViewBind:centerCropImage="@{course.bannerUrl}" />
+            imageViewBind:centerCropImage="@{data.bannerUrl}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

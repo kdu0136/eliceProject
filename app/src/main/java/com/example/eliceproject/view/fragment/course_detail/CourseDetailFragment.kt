@@ -1,21 +1,16 @@
 package com.example.eliceproject.view.fragment.course_detail
 
-import android.view.View
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.ViewCompositionStrategy
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.eliceproject.R
 import com.example.eliceproject.databinding.FragmentCourseDetailBinding
 import com.example.eliceproject.extention.getBundleData
 import com.example.eliceproject.util.Navigator
-import com.example.eliceproject.util.PrintLog
 import com.example.eliceproject.view.fragment.BaseFragment
+import com.example.eliceproject.view.fragment.course_detail.components.adapter.CourseDetailHeaderAdapter
 import com.example.eliceproject.view.fragment.course_detail.components.adapter.LectureListAdapter
 import com.example.eliceproject.view.fragment.event.CourseRegisterUpdateEvent
-import com.mukesh.MarkDown
 import org.greenrobot.eventbus.EventBus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -32,9 +27,23 @@ class CourseDetailFragment :
         parametersOf(fragmentBundleData.courseId)
     }
 
-    private val lectureAdapter: LectureListAdapter by lazy {
+    // region adapter
+    private val headerAdapter: CourseDetailHeaderAdapter =
+        CourseDetailHeaderAdapter().apply {
+            registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+                override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                    // 과목 상세 header insert 시 scroll 처음으로
+                    binding.recyclerView.smoothScrollToPosition(0)
+                }
+            })
+        }
+    private val lectureAdapter: LectureListAdapter =
         LectureListAdapter()
-    }
+    private val concatAdapter: ConcatAdapter = ConcatAdapter(
+        headerAdapter,
+        lectureAdapter,
+    )
+    // endregion
 
     override fun onSetupUI() {
         with(binding) {
@@ -47,7 +56,7 @@ class CourseDetailFragment :
         }
 
         with(binding.recyclerView) {
-            adapter = this@CourseDetailFragment.lectureAdapter
+            adapter = this@CourseDetailFragment.concatAdapter
             (itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
         }
 
@@ -56,27 +65,7 @@ class CourseDetailFragment :
 
     override fun observeViewModel() {
         with(viewModel) {
-            courseDetailLiveData.observe { course ->
-                binding.withImageTitleLayout.root.visibility =
-                    if (course.existBanner) View.VISIBLE else View.GONE
-
-                binding.withoutImageTitleLayout.root.visibility =
-                    if (course.existBanner) View.GONE else View.VISIBLE
-
-                binding.markdown.apply {
-                    // Dispose of the Composition when the view's LifecycleOwner is destroyed
-                    setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-                    setContent {
-                        // In Compose world
-                        MaterialTheme {
-                            MarkDown(
-                                text = course.description ?: "",
-                                modifier = Modifier.fillMaxSize()
-                            )
-                        }
-                    }
-                }
-            }
+            courseDetailHeaderLiveData.observe(this@CourseDetailFragment.headerAdapter::submitList)
 
             lectureListLiveData.observe {
                 this@CourseDetailFragment.lectureAdapter.submitData(lifecycle, it)

@@ -11,8 +11,7 @@ import com.example.eliceproject.view.global_components.adapter.BaseListAdapter
 // 과목 태그 리스트 adapter
 class CourseTagListAdapter(
     private val itemClick: (String) -> Unit,
-) :
-    BaseListAdapter<String, RecyclerView.ViewHolder>(DiffUtil.StringDiffCallback) {
+) : BaseListAdapter<String, RecyclerView.ViewHolder>(DiffUtil.StringDiffCallback) {
     override fun createBodyViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         CourseTagListViewHolder(
             binding = createDataBinding(

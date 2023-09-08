@@ -12,9 +12,6 @@ data class Course(
     @SerializedName("description") val description: String?,
     @SerializedName("taglist") val tagList: List<String>?,
 ) {
-    val existBanner: Boolean
-        get() = bannerUrl?.isNotEmpty() ?: false
-
     companion object {
         val DiffCallback = object : DiffUtil.ItemCallback<Course>() {
             override fun areItemsTheSame(
