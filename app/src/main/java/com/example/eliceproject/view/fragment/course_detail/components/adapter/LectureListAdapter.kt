@@ -3,8 +3,7 @@ package com.example.eliceproject.view.fragment.course_detail.components.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eliceproject.R
-import com.example.eliceproject.data.course.model.Lecture
-import com.example.eliceproject.util.PrintLog
+import com.example.eliceproject.data.lecture.model.Lecture
 import com.example.eliceproject.util.createDataBinding
 import com.example.eliceproject.view.fragment.course_detail.components.view_holder.LectureListHeaderViewHolder
 import com.example.eliceproject.view.fragment.course_detail.components.view_holder.LectureListViewHolder

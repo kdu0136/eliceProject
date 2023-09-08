@@ -1,4 +1,4 @@
-package com.example.eliceproject.data.course.model
+package com.example.eliceproject.data.lecture.model
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.eliceproject.view.global_components.view_holder.ViewHolderType

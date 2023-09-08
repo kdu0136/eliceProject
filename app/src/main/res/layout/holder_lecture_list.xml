@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.example.eliceproject.data.course.model.Lecture" />
+            type="com.example.eliceproject.data.lecture.model.Lecture" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

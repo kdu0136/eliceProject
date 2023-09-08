@@ -1,6 +1,6 @@
 package com.example.eliceproject.view.fragment.course_detail.components.view_holder
 
-import com.example.eliceproject.data.course.model.Lecture
+import com.example.eliceproject.data.lecture.model.Lecture
 import com.example.eliceproject.databinding.HolderLectureListBinding
 import com.example.eliceproject.view.global_components.view_holder.BaseViewHolder
 

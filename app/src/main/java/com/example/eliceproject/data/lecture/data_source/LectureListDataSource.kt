@@ -1,8 +1,8 @@
-package com.example.eliceproject.data.course.data_source
+package com.example.eliceproject.data.lecture.data_source
 
 import com.example.eliceproject.data.BasePagingSource
 import com.example.eliceproject.data.PagingSourceData
-import com.example.eliceproject.data.course.model.Lecture
+import com.example.eliceproject.data.lecture.model.Lecture
 
 class LectureListDataSource(
 ) : BasePagingSource<Lecture>() {

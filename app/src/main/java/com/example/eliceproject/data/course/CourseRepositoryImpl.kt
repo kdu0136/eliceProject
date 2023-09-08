@@ -3,11 +3,8 @@ package com.example.eliceproject.data.course
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.example.eliceproject.data.course.data_source.CourseListDataSource
-import com.example.eliceproject.data.course.data_source.LectureListDataSource
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.course.model.CourseType
-import com.example.eliceproject.data.course.model.Lecture
-import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 class CourseRepositoryImpl(
@@ -28,7 +25,8 @@ class CourseRepositoryImpl(
         }
 
     override suspend fun getCourseDetail(courseId: Int): Course {
-        val imageUrl = Random.nextBoolean().let { if(it) "" else "https://cdn-api.elice.io/api/file/f0b83d1dfd5e47f4b6e8e31753813eeb/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%83%E1%85%A9%E1%84%85%E1%85%A6%E1%84%86%E1%85%B52.png?se=2023-09-21T00%3A15%3A00Z&sp=r&sv=2021-12-02&sr=b&sig=x0FMZROy8O4xnQVJZ2Fl2qfB3OvxQntK80j9w4/M9GM%3D" }
+        val imageUrl = Random.nextBoolean()
+            .let { if (it) "" else "https://cdn-api.elice.io/api/file/f0b83d1dfd5e47f4b6e8e31753813eeb/%E1%84%8B%E1%85%B0%E1%86%B8_%E1%84%83%E1%85%A9%E1%84%85%E1%85%A6%E1%84%86%E1%85%B52.png?se=2023-09-21T00%3A15%3A00Z&sp=r&sv=2021-12-02&sr=b&sig=x0FMZROy8O4xnQVJZ2Fl2qfB3OvxQntK80j9w4/M9GM%3D" }
         return Course(
             id = courseId,
             title = "코딩 기초! 도레미 파이썬 vol2",
@@ -44,14 +42,4 @@ class CourseRepositoryImpl(
             }
         )
     }
-
-    override fun getLectureList(pageSize: Int): Pager<Int, Lecture> =
-        Pager(
-            PagingConfig(
-                initialLoadSize = pageSize,
-                pageSize = pageSize,
-            )
-        ) {
-            LectureListDataSource()
-        }
 }
