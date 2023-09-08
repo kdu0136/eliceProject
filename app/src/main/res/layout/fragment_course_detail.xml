@@ -87,11 +87,35 @@
                             app:course="@{viewModel.courseDetailLiveData}"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            style="@style/Text.NotoBold"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:visibility="@{viewModel.courseDetailLiveData.description.empty ? View.GONE : View.VISIBLE}"
+                            android:layout_width="match_parent"
+                            android:paddingVertical="8dp"
+                            android:paddingHorizontal="16dp"
                             android:layout_height="wrap_content"
-                            android:text="\n123123\n123123\n123123\n123123\n123123\n123123\n123123" />
+                            android:orientation="vertical" >
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/Text.NotoNormal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/course_introduction"
+                                android:textColor="@color/color_524FA1"
+                                android:textSize="14sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@color/color_AEAEAE" />
+
+                            <androidx.compose.ui.platform.ComposeView
+                                android:id="@+id/markdown"
+                                android:layout_marginTop="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
