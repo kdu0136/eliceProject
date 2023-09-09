@@ -48,7 +48,7 @@ class CourseDetailViewModel(
     // endregion
 
     // region 과목 상세
-    val courseDetailLiveData: LiveData<Course> = liveData {
+    private val courseDetailLiveData: LiveData<Course> = liveData {
         try {
             val data = courseRepository.getCourseDetail(courseId = courseId)
             emit(data)
@@ -62,6 +62,7 @@ class CourseDetailViewModel(
         courseDetailLiveData.map {
             parseToCourseHeaderData(course = it)
         }
+
     private fun parseToCourseHeaderData(course: Course): List<CourseDetailHeader> {
         val headerDataList: ArrayList<CourseDetailHeader> = ArrayList()
 

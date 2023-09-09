@@ -1,4 +1,5 @@
-<resources >
+<resources>
+
     <style name="Theme.EliceProject" parent="Theme.AppCompat.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

@@ -20,5 +20,5 @@ fun Fragment.navigate(nav: Navigator) {
 }
 
 // fragment 의 bundle data 반환
-inline fun <reified T: Serializable> Fragment.getBundleData(): T? =
+inline fun <reified T : Serializable> Fragment.getBundleData(): T? =
     arguments?.customGetSerializable("fragmentBundleData")

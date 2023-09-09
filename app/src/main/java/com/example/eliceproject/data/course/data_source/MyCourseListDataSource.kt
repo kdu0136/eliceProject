@@ -6,7 +6,6 @@ import com.example.eliceproject.data.course.dao.MyCourseDao
 import com.example.eliceproject.data.course.model.Course
 import com.example.eliceproject.data.remote.ResultWrapper
 import com.example.eliceproject.remote.service.ApiCourseService
-import com.example.eliceproject.util.PrintLog
 
 class MyCourseListDataSource(
     private val apiCourseService: ApiCourseService,

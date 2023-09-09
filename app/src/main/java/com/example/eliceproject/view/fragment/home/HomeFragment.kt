@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.eliceproject.R
