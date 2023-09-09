@@ -6,14 +6,10 @@
     - View 1. 추천 과목 및 무료 과목, 내 학습 리스트 (Home)
     - View 2. 과목 상세페이지 (Course Detail)
 
----
-
 ## Application Version
 
 - minSdkVersion: 21
 - targetSdkVersion: 34
-
----
 
 ## Packages
 
@@ -29,8 +25,6 @@
     - project에 필요한 전반적인 추가 기능 file. ex) log 출력
 - view
     - 화면에 관련된 file
-
----
 
 ## 구조
 
@@ -104,7 +98,7 @@
         ```
     - BaseViewHolder
         - onItemClick 은 기본적으로 viewHolder 에 전달된 data 를 전부 반환하는 기능이지만
-        - 해당 project 에서는 커스텀이 없었지만 개별 viewHolder 에서 override 가능하여 커스텀 가능하도록 open 선언 
+        - 해당 project 에서는 커스텀이 없었지만 개별 viewHolder 에서 override 가능하여 커스텀 가능하도록 open 선언
         ```
         abstract class BaseViewHolder<VB : ViewDataBinding, T>(
             protected val binding: VB,
